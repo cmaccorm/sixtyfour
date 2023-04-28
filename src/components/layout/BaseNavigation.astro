@@ -7,15 +7,9 @@ const navigationItems = [
 const socialIcons = [
   {
     name: 'GitHub',
-    url: 'https://github.com/eliancodes/brutal',
+    url: 'https://github.com/cmaccorm',
     icon: 'i-uil-github',
-  },
-  {
-    name: 'Twitter',
-    url: 'https://www.twitter.com/eliancodes',
-    icon: 'i-uil-twitter',
-  },
-  { name: 'RSS', url: '/feed.xml', icon: 'i-uil-rss' },
+  }
 ];
 
 interface Props {
@@ -23,12 +17,42 @@ interface Props {
 }
 
 const { pageTitle } = Astro.props;
+
 ---
+
+<style>
+  #type-js {  
+    display: inline-block;
+    line-height: 1;
+    border-right: 3px solid #fff;  
+    animation: cursor 1s step-end infinite;
+  }
+  @keyframes cursor {
+    from, to { border-color: transparent; }
+    50% { border-color: #000000; }
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", function () {
+      let letter = 0;
+      const text = "sixtyfour";
+      function typeText() {
+        if (letter < text.length) {
+          document.getElementById("type-js").innerHTML += text.charAt(letter);
+          letter++;
+          let speed = Math.floor(Math.random() * 150) + 50;
+          setTimeout(typeText, speed);
+        }
+      }
+      typeText();
+  });
+</script>
 
 <header class='border-b-4 border-black flex justify-between p-6 items-center'>
   {pageTitle && <h1 class='hidden'>{pageTitle}</h1>}
   <a href='/' title='Back to Home'>
-    <p class='righteous md:text-5xl'>Brutal</p>
+    <h1 id="type-js" class='righteous md:text-5xl'></h1> 
   </a>
   <nav class='hidden md:inline-block'>
     <h2 class='hidden'>Navigation</h2>
@@ -53,7 +77,7 @@ const { pageTitle } = Astro.props;
               href={item.url}
               class='hover:text-green hover:underline transition-all duration-150 ease-in-out'
               target='_blank'
-              title={`'See @ElianCodes on ${item.name}`}
+              title={`See @cmaccorm on ${item.name}`}
             >
               <div class:list={[item.icon, 'w-6 h-6']} />
             </a>
